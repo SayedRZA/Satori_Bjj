@@ -1,0 +1,26 @@
+.Navbar-style{
+    background-color: #ec2738;
+    /* display: flex;
+    justify-content: center; */
+    gap: 15px;
+}
+.Navbar-style > div > img {
+   float: left;
+}
+
+.Navbar-style > ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Navbar-style > ul > li > div > a > span{
+    color: #fff;
+    font-size: larger;
+}
+
+.Navbar-style > ul > li > div:hover{
+    background-color: #b11c29;
+    border-radius: 12px;
+    box-shadow: inset 1px 0px 50px 24px rgba(0, 0, 0, 0.993)
+}

@@ -1,0 +1,128 @@
+.beltRanks {}
+
+.beltRanks__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.beltRanks__modal {
+    background: white;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.beltRanks__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    background: #111827;
+    color: white;
+}
+
+.beltRanks__title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.beltRanks__closeButton {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.beltRanks__closeButton:hover {
+    transform: scale(1.1);
+}
+
+.beltRanks__body {
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.beltRanks__timeline {
+    width: 100%;
+}
+
+.beltRanks__marker {
+    display: flex;
+    width: 2.2rem;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.beltRanks__card {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.beltRanks__text {
+    line-height: 1.6;
+}
+
+
+@media (max-width: 768px) {
+    .beltRanks__modal {
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 16px;
+    }
+
+    .beltRanks__header {
+        padding: 1rem;
+    }
+
+    .beltRanks__title {
+        font-size: 1.2rem;
+    }
+
+    .beltRanks__body {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .beltRanks__overlay {
+        padding: 0.5rem;
+    }
+
+    .beltRanks__modal {
+        border-radius: 12px;
+    }
+
+    .beltRanks__title {
+        font-size: 1rem;
+    }
+
+    .beltRanks__closeButton {
+        font-size: 1.2rem;
+    }
+
+    .beltRanks__body {
+        padding: 0.75rem;
+    }
+}
