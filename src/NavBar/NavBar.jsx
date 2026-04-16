@@ -1,109 +1,84 @@
-import { Menubar } from 'primereact/menubar';
-import { Badge } from 'primereact/badge';
+import { Menubar } from "primereact/menubar";
+import { Button } from "primereact/button";
+import style from "./NavBar.module.css";
 
-import style from './NavBar.module.css'
+export default function NavBar({ setSelectedPage }) {
+   const goHome = () => setSelectedPage("home");
+  const goBeltRanks = () => setSelectedPage("beltranks");
+  const goTrialForm = () => setSelectedPage("trialform");
 
-export default function NavBar ({setSelectedPage}) {
- const itemRenderer = (item) => (
-        <a className="flex align-items-center p-menuitem-link">
-            <span className={item.icon} />
-            <span className="mx-2">{item.label}</span>
-            {item.badge && <Badge className="ml-auto" value={item.badge} />}
-            {item.shortcut && <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{item.shortcut}</span>}
-        </a>
-    );
-    const items = [
+  const items = [
+    {
+      label: "Home",
+      command: goHome ,
+    },
+    {
+      label: "Programs",
+      items: [
         {
-            label: 'Home',
-            icon: 'pi pi-home',
-            command: () => setSelectedPage('home')
+          label: "Adults Jiu Jitsu",
+          command: goTrialForm ,
         },
         {
-            label: 'Features',
-            icon: 'pi pi-star'
+          label: "Kids Jiu Jitsu",
+          command: goTrialForm ,
         },
-        {
-            label: 'Projects',
-            icon: 'pi pi-search',
-            items: [
-                {
-                    label: 'Core',
-                    icon: 'pi pi-bolt',
-                    shortcut: '⌘+S',
-                    template: itemRenderer
-                },
-                {
-                    label: 'Blocks',
-                    icon: 'pi pi-server',
-                    shortcut: '⌘+B',
-                    template: itemRenderer
-                },
-                {
-                    label: 'UI Kit',
-                    icon: 'pi pi-pencil',
-                    shortcut: '⌘+U',
-                    template: itemRenderer
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Templates',
-                    icon: 'pi pi-palette',
-                    items: [
-                        {
-                            label: 'Apollo',
-                            icon: 'pi pi-palette',
-                            badge: 2,
-                            template: itemRenderer
-                        },
-                        {
-                            label: 'Ultima',
-                            icon: 'pi pi-palette',
-                            badge: 3,
-                            template: itemRenderer
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            label: 'Contact',
-            icon: 'pi pi-envelope',
-            badge: 3,
-            command: () => setSelectedPage('trialform')
-        },{
-            label: 'Blog',
-            icon: 'pi pi-search',
-            items: [
-                {
-                    label: 'Belt Ranks',
-                    icon: 'pi pi-bolt',
-                    template: itemRenderer,
-                    command: () => setSelectedPage('beltranks')
-                },
-                {
-                    label: 'Blocks',
-                    icon: 'pi pi-server',
-                    shortcut: '⌘+B',
-                    template: itemRenderer
-                },
-                {
-                    label: 'UI Kit',
-                    icon: 'pi pi-pencil',
-                    shortcut: '⌘+U',
-                    template: itemRenderer
-                },
-    ]}
-    ];
+      ],
+    },
+    {
+      label: "Belt Journey",
+      command: goBeltRanks ,
+    },
+  ];
 
-    const start = <img alt="logo" src="https://satoribjjacademy.com/wp-content/uploads/2026/02/Camada-1.png" height="40" className="mr-2"></img>;
+  const start = (
+    <div className={style.navbar__brand}>
+      <img
+        alt="Satori BJJ logo"
+        src="https://satoribjjacademy.com/wp-content/uploads/2026/02/Camada-1.png"
+        className={style.navbar__logo}
+      />
+      <div className={style.navbar__brandText}>
+        <span className={style.navbar__brandTitle}>Satori BJJ</span>
+        <span className={style.navbar__brandSubtitle}>Train with purpose</span>
+      </div>
+    </div>
+  );
 
+const end = (
+  <div className={style.navbar__social}>
+    <a
+      href="https://www.facebook.com/people/Satori-BJJ-Academy/61561503492187/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={style.socialIcon}
+    >
+      <i className="pi pi-facebook"></i>
+    </a>
+    <a
+      href="https://www.instagram.com/satoribjjacademy"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={style.socialIcon}
+    >
+      <i className="pi pi-instagram"></i>
+    </a>
+    <Button
+      label="Book Free Trial"
+      className={style.navbar__cta}
+      onClick={() => setSelectedPage("trialform")}
+    />
+  </div>
+);
 
-
-    return(
-        <div>
-             <Menubar className={style["Navbar-style"]}  model={items} start={start} />
-        </div>
-    )
+  return (
+    <div className={style.navbar__wrapper}>
+      <Menubar
+        className={style.navbar}
+        model={items}
+        start={start}
+        end={end}
+      />
+    </div>
+  );
 }

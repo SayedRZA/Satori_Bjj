@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
@@ -15,6 +15,14 @@ export default function TrialForm({ onClose }) {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const programs = [
     { label: "Adults Jiu Jitsu", value: "adults" },
@@ -67,29 +75,21 @@ export default function TrialForm({ onClose }) {
       return;
     }
 
-    // Build the URL with query parameters
     const { fullName, email, phone } = formData;
+
     const programEndpointMap = {
       adults: "group-adults",
       kids: "group-kids",
-      women: "group-women",
-      beginner: "group-beginner",
     };
+
     const endpoint = programEndpointMap[formData.program] || "group-adults";
 
     const url = new URL(`https://schedule.satoribjjacademy.com/${endpoint}`);
     url.searchParams.append("full_name", fullName);
     url.searchParams.append("email", email);
     url.searchParams.append("phone", phone);
-    window.location.href = url.toString();
 
-    setFormData({
-      fullName: "",
-      phone: "",
-      email: "",
-      program: null,
-    });
-    setErrors({});
+    window.location.href = url.toString();
   };
 
   return (
@@ -104,6 +104,7 @@ export default function TrialForm({ onClose }) {
               type="button"
               className={styles.trialForm__closeButton}
               onClick={onClose}
+              aria-label="Close form"
             >
               ✕
             </button>
@@ -118,11 +119,14 @@ export default function TrialForm({ onClose }) {
           </div>
 
           <h2 className={styles.trialForm__title}>
-            Fill in your details and{" "}
-            <span className={styles.trialForm__titleBold}>
-              schedule your trial class
-            </span>
+            Start Your{" "}
+            <span className={styles.trialForm__titleBold}>Free Trial</span>
           </h2>
+
+          <p className={styles.trialForm__subtitle}>
+            Fill out your details below and reserve your first class.<br/>
+            No commitment, just come train.
+          </p>
 
           <form className={styles.trialForm__form} onSubmit={handleSubmit}>
             <div className={styles.trialForm__field}>
@@ -145,7 +149,7 @@ export default function TrialForm({ onClose }) {
               <InputText
                 value={formData.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
-                placeholder="Phone*"
+                placeholder="Phone Number*"
                 className={`${styles.trialForm__input} ${errors.phone ? "p-invalid" : ""}`}
               />
               {errors.phone && (
@@ -161,7 +165,7 @@ export default function TrialForm({ onClose }) {
               <InputText
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
-                placeholder="Email*"
+                placeholder="Email Address*"
                 className={`${styles.trialForm__input} ${errors.email ? "p-invalid" : ""}`}
               />
               {errors.email && (
@@ -178,7 +182,7 @@ export default function TrialForm({ onClose }) {
                 value={formData.program}
                 options={programs}
                 onChange={(e) => handleChange("program", e.value)}
-                placeholder="Select a program*"
+                placeholder="Choose a Program*"
                 className={`${styles.trialForm__dropdown} ${errors.program ? "p-invalid" : ""}`}
                 appendTo="self"
               />
@@ -193,9 +197,13 @@ export default function TrialForm({ onClose }) {
 
             <Button
               type="submit"
-              label="Schedule a trial class"
+              label="Book My Free Trial"
               className={styles.trialForm__button}
             />
+
+            <p className={styles.trialForm__footnote}>
+              We’ll take you to the booking page to choose your class time.
+            </p>
           </form>
         </div>
       </div>

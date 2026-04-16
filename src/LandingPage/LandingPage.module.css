@@ -1,0 +1,162 @@
+/* General */
+.landingPage {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+
+  /* initial radial gradient */
+  background: radial-gradient(circle, #7e0000 0%, #000 70%);
+  background-size: 200% 200%;
+  animation: rippleGradient 0.2s infinite alternate;
+}
+
+@keyframes rippleGradient {
+  0% {
+    background: radial-gradient(circle, #7e0000 0%, #000 70%);
+  }
+  50% {
+    background: radial-gradient(circle, #7e0000 20%, #000 90%);
+  }
+  100% {
+    background: radial-gradient(circle, #7e0000 40%, #000 100%);
+  }
+}
+
+.heroContent {
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.heroCTA {
+  background: linear-gradient(90deg, #ef3b47, #d82f3a);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.heroCTA:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Programs Section */
+.programs {
+  background: #111827;
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.programsGrid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.programCard {
+  background: #1f2937;
+  padding: 30px 20px;
+  border-radius: 12px;
+  max-width: 300px;
+  flex: 1 1 250px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.programCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.programCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Section */
+.contact {
+  background: #3b82f6;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.contactCTA {
+  background: #fff;
+  color: #3b82f6;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.contactCTA:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Footer */
+.footer {
+  background: #111827;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.4rem;
+  }
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  .programsGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
